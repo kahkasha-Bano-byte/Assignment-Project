@@ -1,0 +1,38 @@
+.size-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: #ffffff;
+    padding: 22px;
+    box-shadow: 0 18px 50px rgba(17, 17, 17, 0.05);
+}
+
+.size-container h2 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+}
+
+.size-container>div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.size-btn {
+    width: 52px;
+    height: 52px;
+    border: 1px solid #d4d4d8;
+    background: #f7f7f8;
+    color: #333;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.size-btn.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
