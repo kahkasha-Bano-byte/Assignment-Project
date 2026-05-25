@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project
 
 Minimal instructions to run the app locally.
@@ -23,3 +24,6 @@ The dev server runs on port 3002 by default.
 ```bash
 pnpm build
 ```
+=======
+# Assignment-Project
+>>>>>>> fc049b0bea05b84108c349c1ea24b91a8ebca921
