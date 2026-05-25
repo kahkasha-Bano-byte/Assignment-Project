@@ -11,32 +11,7 @@ module.exports = {
     clean: true,
   },
 
-  mode: 'development',
-
-  devServer: {
-    static: './public',
-    port: 3004,
-    open: true,
-    client: {
-      overlay: {
-        warnings: false,
-        errors: true,
-      },
-    },
-  },
-
-  stats: {
-    warningsFilter: [
-      /Critical dependency: require function is used in a way in which dependencies cannot be statically extracted/,
-    ],
-  },
-
-  ignoreWarnings: [
-    {
-      module: /productImages\.ts/,
-      message: /Critical dependency/,
-    },
-  ],
+  mode: 'production',
 
   module: {
     rules: [
@@ -45,21 +20,15 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-
       {
         test: /\.(png|jpe?g|gif)$/i,
         type: 'asset/resource',
       },
     ],
-  },
-
-  resolve: {
-    extensions: ['.js', '.jsx'],
   },
 
   plugins: [
@@ -71,9 +40,9 @@ module.exports = {
       patterns: [
         {
           from: 'public/assets',
-          to: 'assets'
-        }
-      ]
-    })
+          to: 'assets',
+        },
+      ],
+    }),
   ],
 };
