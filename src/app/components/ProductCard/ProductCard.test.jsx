@@ -19,39 +19,17 @@ const mockProduct = {
     isFreeShipping: true,
 };
 
-const renderWithStore = (
-    ui,
-    { store } = {}
-) => {
 
-    const usedStore =
-        store ||
-        configureStore({
-            reducer: {
-                cart: cartReducer
-            },
-        });
-
-    return {
-        ...render(
-            <Provider store={usedStore}>
-                {ui}
-            </Provider>
-        ),
-        store: usedStore,
-    };
-};
 
 describe('ProductCard', () => {
 
+    it('render product card' ,()=>{
+        render(<ProductCard  product={mockProduct}/>)
+        screen.data-testid{}
+    })
     it('renders product title', () => {
-
-        renderWithStore(
-            <ProductCard
-                product={mockProduct}
-            />
-        );
-
+    render(<ProductCard  product={mockProduct}/>)
+        
         expect(
             screen.getByText(
                 'Test Product'
@@ -61,11 +39,7 @@ describe('ProductCard', () => {
 
     it('renders product price', () => {
 
-        renderWithStore(
-            <ProductCard
-                product={mockProduct}
-            />
-        );
+        render(<ProductCard  product={mockProduct}/>)
 
         expect(
             screen.getByText('$ 30')
@@ -74,11 +48,7 @@ describe('ProductCard', () => {
 
     it('renders free shipping tag', () => {
 
-        renderWithStore(
-            <ProductCard
-                product={mockProduct}
-            />
-        );
+        render(<ProductCard  product={mockProduct}/>)
 
         expect(
             screen.getByText(
@@ -89,12 +59,7 @@ describe('ProductCard', () => {
 
     it('adds product to cart on first click', () => {
 
-        const { store } =
-            renderWithStore(
-                <ProductCard
-                    product={mockProduct}
-                />
-            );
+        render(<ProductCard  product={mockProduct}/>)
 
         fireEvent.click(
             screen.getByRole(
@@ -113,11 +78,7 @@ describe('ProductCard', () => {
 
     it('shows Added button after adding item', () => {
 
-        renderWithStore(
-            <ProductCard
-                product={mockProduct}
-            />
-        );
+        render(<ProductCard  product={mockProduct}/>)
 
         fireEvent.click(
             screen.getByRole(
@@ -136,13 +97,7 @@ describe('ProductCard', () => {
 
     it('increments quantity on second click', () => {
 
-        const { store } =
-            renderWithStore(
-                <ProductCard
-                    product={mockProduct}
-                />
-            );
-
+        render(<ProductCard  product={mockProduct}/>)
         const button =
             screen.getByRole(
                 'button',

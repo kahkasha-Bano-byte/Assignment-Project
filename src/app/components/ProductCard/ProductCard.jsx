@@ -20,7 +20,7 @@ function ProductCard({ product }) {
     );
 
     return (
-        <div className="product-card">
+        <div className="product-card" data-testid = "product card">
 
             <div className="product-image">
 
@@ -57,7 +57,7 @@ function ProductCard({ product }) {
                 }}
                 
             >
-                {isAdded ? 'Added' : 'Add To Cart'}
+                {isAdded ? 'Add' : 'Add To Cart'}
             </button>
 
         </div>

@@ -2,19 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ProductList.scss';
 
-import {
-    selectProducts
-} from '../../redux/products/selectors';
-
+import { selectProducts } from '../../redux/products/selectors';
 import { setSortBy } from '../../redux/products/slice';
-
 import ProductCard from '../ProductCard/ProductCard';
 const order = ["Select", "Low to High", "High to Low"]
 function ProductList() {
     const dispatch = useDispatch();
-
     const products = useSelector(selectProducts);
-
     return (
         <div>
             <div className="product-list-header">

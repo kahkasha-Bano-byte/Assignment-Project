@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import { sortProducts } from '../../utils/SortProducts';
+import { filterProducts } from '../../utils/FilterProducts.js';
 const API_URL =
   'https://mocki.io/v1/0fdb8e9e-df08-4b67-9ae0-3cb4eccd3bc8';
 
@@ -15,44 +16,14 @@ export const fetchProducts = createAsyncThunk(
 
 
 
-const initialState= {
+const initialState = {
   products: [],
   filteredProducts: [],
   selectedSizes: [],
-  sortBy: '',
+  sortBy: 'Select'
 };
 
-const filterProducts = (
-  products,
-  selectedSizes
-) => {
-  if (selectedSizes.length === 0) {
-    return products;
-  }
 
-  return products.filter((product) =>
-    selectedSizes.some((size) =>
-      product.availableSizes.includes(size)
-    )
-  );
-};
-
-const sortProducts = (
-  products,
-  sortBy
-) => {
-  const sorted = [...products];
-
-  if (sortBy === "Low to High") {
-    sorted.sort((a, b) => a.price - b.price);
-  }
-
-  if (sortBy === "High to Low") {
-    sorted.sort((a, b) => b.price - a.price);
-  }
-
-  return sorted;
-};
 
 const productsSlice = createSlice({
   name: 'products',
@@ -85,37 +56,43 @@ const productsSlice = createSlice({
         state.sortBy
       );
     },
-
-    setSortBy: (
-      state,
-      action
-    ) => {
+    setSortBy: (state, action) => {
       state.sortBy = action.payload;
 
+      const filtered = filterProducts(
+        state.products,
+        state.selectedSizes
+      );
+
       state.filteredProducts = sortProducts(
-        state.filteredProducts,
+        filtered,
         state.sortBy
       );
     },
+
+
   },
-extraReducers: (builder) => {
-    builder.addCase(
-      fetchProducts.fulfilled,
-      (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      state.products = action.payload;
 
-        state.products = action.payload;
+      const filtered = filterProducts(
+        action.payload,
+        state.selectedSizes
+      );
 
-        state.filteredProducts =
-          action.payload;
-      }
-    );
+      state.filteredProducts = sortProducts(
+        filtered,
+        state.sortBy
+      );
+    });
   }
-  
+
 });
 
 export const {
   toggleSizeFilter,
-  setSortBy,
+  setSortBy
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

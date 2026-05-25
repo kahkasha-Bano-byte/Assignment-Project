@@ -6,14 +6,10 @@ import productReducer
 import cartReducer
   from '../redux/cart/slice';
 
-import filterReducer
-  from '../redux/filters/slice';
-
 const store = configureStore({
   reducer: {
     products: productReducer,
     cart: cartReducer,
-    filters: filterReducer,
   },
 });
 

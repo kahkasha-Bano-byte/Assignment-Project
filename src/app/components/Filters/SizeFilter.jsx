@@ -32,8 +32,8 @@ function SizeFilter() {
       <div>
         {sizes.map((size) => (
           <button className={`size-btn ${selectedSizes.includes(size)
-              ? 'active'
-              : ''
+            ? 'active'
+            : ''
             }`}
             key={size}
             onClick={() =>
