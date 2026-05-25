@@ -1,4 +1,4 @@
-// src/utils/sortProducts.js
+
 
 export const sortProducts = (products, sortBy) => {
   const sorted = [...products];

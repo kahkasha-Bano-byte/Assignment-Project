@@ -5,7 +5,7 @@ import {
 } from '../../redux/products/slice';
 
 import {
-  selectSelectedSizes,
+  getSelectedSizes
 } from '../../redux/products/selectors';
 
 const sizes = [
@@ -21,10 +21,8 @@ const sizes = [
 function SizeFilter() {
   const dispatch = useDispatch();
 
-  const selectedSizes = useSelector(
-    selectSelectedSizes
-  );
-
+ const selectedSizes =
+  useSelector(getSelectedSizes);
   return (
     <div className="size-container">
       <h2>Sizes</h2>

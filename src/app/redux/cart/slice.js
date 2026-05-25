@@ -1,16 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   cartItems: [],
-  subtotal: 0,
-};
-
-const calculateSubtotal = (items) => {
-  return items.reduce(
-    (total, item) =>
-      total + item.price * item.quantity,
-    0
-  );
 };
 
 const cartSlice = createSlice({
@@ -19,7 +10,33 @@ const cartSlice = createSlice({
   initialState,
 
   reducers: {
+
+    increment: (state, action) => {
+
+      const item =
+        state.cartItems.find(
+          item => item.id === action.payload
+        );
+
+      if (item) {
+        item.quantity += 1;
+      }
+    },
+
+    decrement: (state, action) => {
+
+      const item =
+        state.cartItems.find(
+          item => item.id === action.payload
+        );
+
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+      }
+    },
+
     addToCart: (state, action) => {
+
       const product = action.payload;
 
       const existingItem =
@@ -28,16 +45,17 @@ const cartSlice = createSlice({
         );
 
       if (existingItem) {
+
         existingItem.quantity += 1;
+
       } else {
+
         state.cartItems.push({
           ...product,
           quantity: 1,
         });
-      }
 
-      state.subtotal =
-        calculateSubtotal(state.cartItems);
+      }
     },
 
     removeFromCart: (
@@ -49,9 +67,6 @@ const cartSlice = createSlice({
         state.cartItems.filter(
           item => item.id !== action.payload
         );
-
-      state.subtotal =
-        calculateSubtotal(state.cartItems);
     },
   },
 });
@@ -59,6 +74,8 @@ const cartSlice = createSlice({
 export const {
   addToCart,
   removeFromCart,
+  increment,
+  decrement,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ProductCard.scss';
 
 import { addToCart } from '../../redux/cart/slice';
-
+import { getCartItems }
+from '../../redux/cart/selectors.js';
 
 function ProductCard({ product }) {
     const imageUrl = `/assets/images/${product.sku}.jpg`;
 
 
     const dispatch = useDispatch();
-
-    const cartItems = useSelector(
-        state => state.cart.cartItems
-    );
+    const cartItems =
+      useSelector(getCartItems);
 
     const isAdded = cartItems.some(
         item => item.id === product.id

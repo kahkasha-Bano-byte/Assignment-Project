@@ -8,8 +8,9 @@ import {
 
 import {
   removeFromCart,
+  increment,
+  decrement
 } from '../../redux/cart/slice';
-
 
 function CartSidebar() {
 
@@ -83,7 +84,8 @@ function CartSidebar() {
               >
                 <ImCross />
               </button>
-
+              <button onClick={()=> dispatch(increment(item.id))}> plus </button>
+               <button onClick={()=> dispatch(decrement(item.id))}> minus </button>
             </div>
           );
         })}
