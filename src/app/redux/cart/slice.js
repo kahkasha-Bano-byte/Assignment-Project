@@ -11,29 +11,29 @@ const cartSlice = createSlice({
 
   reducers: {
 
-    increment: (state, action) => {
+    // increment: (state, action) => {
 
-      const item =
-        state.cartItems.find(
-          item => item.id === action.payload
-        );
+    //   const item =
+    //     state.cartItems.find(
+    //       item => item.id === action.payload
+    //     );
 
-      if (item) {
-        item.quantity += 1;
-      }
-    },
+    //   if (item) {
+    //     item.quantity += 1;
+    //   }
+    // },
 
-    decrement: (state, action) => {
+    // decrement: (state, action) => {
 
-      const item =
-        state.cartItems.find(
-          item => item.id === action.payload
-        );
+    //   const item =
+    //     state.cartItems.find(
+    //       item => item.id === action.payload
+    //     );
 
-      if (item && item.quantity > 1) {
-        item.quantity -= 1;
-      }
-    },
+    //   if (item && item.quantity > 1) {
+    //     item.quantity -= 1;
+    //   }
+    // },
 
     addToCart: (state, action) => {
 

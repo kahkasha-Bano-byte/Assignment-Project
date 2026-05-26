@@ -84,8 +84,8 @@ function CartSidebar() {
               >
                 <ImCross />
               </button>
-              <button onClick={()=> dispatch(increment(item.id))}> plus </button>
-               <button onClick={()=> dispatch(decrement(item.id))}> minus </button>
+              {/* <button onClick={()=> dispatch(increment(item.id))}> plus </button>
+               <button onClick={()=> dispatch(decrement(item.id))}> minus </button> */}
             </div>
           );
         })}
